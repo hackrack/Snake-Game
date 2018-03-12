@@ -1,7 +1,10 @@
 // DOM Nodes
 var snake = document.getElementById("snake");
 var snakeField = document.getElementById("snakeField");
-var snakeTail;
+var lengthText = document.getElementById("length");
+var gameover = document.getElementById("gameover");
+var length = 0;
+var locked = false;
 
 var down = 0;
 var right = 0;
@@ -9,7 +12,7 @@ var snakeTail;
 var movingInterval;
 var offsetTop;
 var offsetLeft;
- 
+
 const generateNewPray = () => {
     var newDiv = document.createElement("div");
         newDiv.style.top = Math.floor(Math.random() * 50) * 10 + "px";
@@ -27,19 +30,22 @@ const removePray = () => {
 
 const isGameOver = () => {
     if (down < 0 || right < 0) {
-       //  console.log("game over")
-       // alert("Game Over")
+       locked = true;
        location.reload() // Resets the game
     } else if (down > 500 || right > 500) {
-       //  console.log("game over")
-       // alert("Game Over")
+       locked = true;
        location.reload() // Resets the game
     }
+      if (locked) {
+        gameover.innerHTML = "Game Over";
+      }
 }
+
 
 const didSnakeAtePray = () => {
     if (snake.offsetLeft === snakeTail.offsetLeft && snake.offsetTop === snakeTail.offsetTop) {
-        snakeTail.id = ""
+        snakeTail.id = "";
+        lengthText.innerHTML = length++;
         // snakeTail.style = ""
         snakeTail.classList.add("eaten")
         snakeTail.style.borderTopLeftRadius = "50px";
@@ -47,11 +53,6 @@ const didSnakeAtePray = () => {
         snake.appendChild(snakeTail)
     }
 }
-
-const rotateBody = () => {
-
-}
-
 
 function goDown() {
   offsetTop = snake.offsetTop;
@@ -135,10 +136,11 @@ document.body.onkeyup = function(e){
             generateNewPray()// Every 5s generate a new pray
             setTimeout(() => removePray(), 4900)
             }, 5000);
+            document.addEventListener('keydown', (event) => {
+                    var keyName = event.key;
+                    move(keyName)
+            });
+    } else {
+      return;
     }
 }
-
-document.addEventListener('keydown', (event) => {
-        var keyName = event.key;
-        move(keyName)
-});

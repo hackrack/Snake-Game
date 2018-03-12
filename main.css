@@ -2,6 +2,16 @@ body {
   background-color: grey;
 }
 
+@font-face {
+  font-family: DOS;
+  src: url(file:///Users/c4q/Desktop/C4Q/projects/makeSnake/dos_font/dos_font.ttf);
+}
+@font-face {
+  font-family: font2;
+  src: url(file:///Users/umedjonibrohimov/Desktop/C4Q/HTML/oct16/ch12webFonts/font2.ttf);
+}
+
+
 #snakeField {
   position: absolute;
   left: 200px;
@@ -33,4 +43,45 @@ body {
     height: 10px;
     width:10px;
     background-color: pink;
+}
+
+h3, h2 {
+  font-family: DOS;
+  font-size: 30px;
+}
+
+
+#spacebar {
+  position: absolute;
+  left: 800px;
+  top: 170px;
+}
+
+#arrows {
+  position: absolute;
+  left: 800px;
+  top: 190px;
+}
+
+#goodluck {
+  position: absolute;
+  left: 800px;
+  top: 210px;
+}
+
+#gameover {
+  position: absolute;
+  left: 220px;
+  top: 200px;
+  color: red;
+  font-size: 8em;
+  font-family: DOS;
+}
+
+#length {
+  position: absolute;
+  left: 800px;
+  top: 310px;
+  font-size: 4em;
+  font-family: DOS;
 }
